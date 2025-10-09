@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="black rook">
+  <defs>
+    <linearGradient id="blackRookBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4b5563" />
+      <stop offset="1" stop-color="#0a1221" />
+    </linearGradient>
+    <linearGradient id="blackRookBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c384a" />
+      <stop offset="1" stop-color="#0b1120" />
+    </linearGradient>
+  </defs>
+  <g stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path fill="url(#blackRookBody)" d="M34 28h12v10h12V28h12v10h12V28h12l-6 24H40z" />
+    <path fill="url(#blackRookBody)" d="M40 52h40l8 32-12 20H44L32 84z" />
+    <path fill="url(#blackRookBase)" d="M28 100h64v16H28z" />
+  </g>
+  <path d="M46 70h28" stroke="#1f2937" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+</svg>

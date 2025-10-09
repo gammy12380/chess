@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="white king">
+  <defs>
+    <linearGradient id="whiteKingBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdfdff" />
+      <stop offset="1" stop-color="#c7d2fe" />
+    </linearGradient>
+    <linearGradient id="whiteKingBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ebeefe" />
+      <stop offset="1" stop-color="#afb9f8" />
+    </linearGradient>
+    <linearGradient id="whiteKingHighlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#9aa6ff" stop-opacity="0.15" />
+    </linearGradient>
+  </defs>
+  <g stroke="#475569" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path fill="url(#whiteKingHighlight)" d="M66 22h12v8H66v14h-12V30H42v-8h12V14h12z" />
+    <path fill="url(#whiteKingBody)" d="M38 45h44l12 24c2.4 4.8 2 10.6-0.9 15.2L83 104H37L27.1 84.2c-2.9-4.6-3.3-10.4-0.9-15.2z" />
+    <path fill="url(#whiteKingBase)" d="M28 100h64v16H28z" />
+  </g>
+  <path d="M40 62h40" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+  <path d="M46 84h28" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="black bishop">
+  <defs>
+    <linearGradient id="blackBishopBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4b5563" />
+      <stop offset="1" stop-color="#0a1221" />
+    </linearGradient>
+    <linearGradient id="blackBishopBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c384a" />
+      <stop offset="1" stop-color="#0b1120" />
+    </linearGradient>
+  </defs>
+  <g stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path fill="url(#blackBishopBody)" d="M60 18c-10.8 0-20 9.2-20 22 0 5.2 1.5 9.8 4 13.4L38 66l8 18h28l8-18-6-12.6c2.5-3.6 4-8.2 4-13.4 0-12.8-9.2-22-20-22z" />
+    <path fill="#303b4d" d="M52 46l16-16" stroke="#1f2937" stroke-width="3" stroke-linecap="round" />
+    <path fill="url(#blackBishopBody)" d="M40 84h40l8 14H32z" />
+    <path fill="url(#blackBishopBase)" d="M28 100h64v16H28z" />
+  </g>
+</svg>

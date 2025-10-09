@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="black king">
+  <defs>
+    <linearGradient id="blackKingBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4b5563" />
+      <stop offset="1" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="blackKingBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c384a" />
+      <stop offset="1" stop-color="#0b1120" />
+    </linearGradient>
+    <linearGradient id="blackKingHighlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#94a3b8" stop-opacity="0.65" />
+      <stop offset="1" stop-color="#0b1323" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <g stroke="#0f172a" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path fill="url(#blackKingHighlight)" d="M66 22h12v8H66v14h-12V30H42v-8h12V14h12z" />
+    <path fill="url(#blackKingBody)" d="M38 45h44l12 24c2.4 4.8 2 10.6-0.9 15.2L83 104H37L27.1 84.2c-2.9-4.6-3.3-10.4-0.9-15.2z" />
+    <path fill="url(#blackKingBase)" d="M28 100h64v16H28z" />
+  </g>
+  <path d="M40 62h40" stroke="#1f2937" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+  <path d="M46 84h28" stroke="#1f2937" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+</svg>

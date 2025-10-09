@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="white knight">
+  <defs>
+    <linearGradient id="whiteKnightBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9fbff" />
+      <stop offset="1" stop-color="#c5d1ff" />
+    </linearGradient>
+    <linearGradient id="whiteKnightBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ebeefe" />
+      <stop offset="1" stop-color="#b2bcfa" />
+    </linearGradient>
+  </defs>
+  <g stroke="#475569" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path fill="url(#whiteKnightBody)" d="M74 26c-10-6-24-9-36-4l-2 14c12-2 20 2 22 10l-14 10-8-6-8 10 10 14-10 18 8 16h40l10-32c2.5-7.8-0.7-16.4-7.8-21.2l-6.2-4.3 14-10z" />
+    <path fill="#dce4ff" d="M56 52c2 4 2 8-2 12" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" />
+    <path fill="url(#whiteKnightBase)" d="M32 100h56v16H32z" />
+  </g>
+  <circle cx="64" cy="42" r="4" fill="#475569" />
+</svg>
