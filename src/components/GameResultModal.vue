@@ -1,11 +1,10 @@
 <script setup lang="ts">
-interface Props {
-  open: boolean
-  message: string
-  status: string
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  open: { type: Boolean, required: true },
+  message: { type: String, required: true },
+  status: { type: String, default: '' },
+  confirmLabel: { type: String, default: '重新開始' },
+})
 
 const emit = defineEmits<{ close: []; restart: [] }>()
 
@@ -50,7 +49,7 @@ const handleBackdropClick = (event: MouseEvent) => {
                 class="flex-1 rounded-md bg-emerald-500 px-3 py-1.5 text-sm font-semibold text-slate-900 transition hover:bg-emerald-400 focus:outline-none focus-visible:ring focus-visible:ring-emerald-300"
                 @click="emit('restart')"
               >
-                重新開始
+                {{ props.confirmLabel }}
               </button>
             </footer>
           </div>

@@ -15,6 +15,7 @@ function labelForColor(color: 'w' | 'b') {
 
 type GameMode = 'pvp' | 'pvai'
 type AiDifficulty = 'easy' | 'medium' | 'hard'
+type AllowedMoveColor = 'both' | 'w' | 'b'
 
 const AI_DEPTH_MAP: Record<AiDifficulty, number> = {
   easy: 1,
@@ -49,6 +50,7 @@ export const useChessStore = defineStore('chess', () => {
   const aiDifficulty = ref<AiDifficulty>('medium')
   const aiColor = ref<'w' | 'b'>('b')
   const isAiThinking = ref(false)
+  const allowedMoveColor = ref<AllowedMoveColor>('both')
 
   let aiTaskId = 0
 
@@ -135,6 +137,9 @@ export const useChessStore = defineStore('chess', () => {
     const currentTurn = game.turn()
 
     if (piece && piece.color === currentTurn) {
+      if (allowedMoveColor.value !== 'both' && allowedMoveColor.value !== piece.color) {
+        return
+      }
       selectedSquare.value = square
       legalMoves.value = game.moves({ square, verbose: true })
       return
@@ -190,6 +195,7 @@ export const useChessStore = defineStore('chess', () => {
 
     cancelAiComputation()
     pendingPromotion.value = null
+    allowedMoveColor.value = 'both'
     game.reset()
     updateBoard()
     lastMove.value = null
@@ -336,6 +342,50 @@ export const useChessStore = defineStore('chess', () => {
     reset({ triggerAi: options.mode === 'pvai' && options.aiColor === 'w' })
   }
 
+  function setAllowedMoveColor(color: AllowedMoveColor) {
+    allowedMoveColor.value = color
+  }
+
+  function loadFromState(options: {
+    fen: string
+    lastMove?: { from: Square; to: Square; san?: string } | null
+  }) {
+    cancelAiComputation()
+    try {
+      const snapshot = new Chess(options.fen)
+      game.load(snapshot.fen())
+    } catch (error) {
+      console.error('Failed to load remote state', error)
+      return
+    }
+
+    updateBoard()
+    const remoteMove = options.lastMove ?? null
+    if (remoteMove) {
+      lastMove.value = {
+        from: remoteMove.from,
+        to: remoteMove.to,
+        san: remoteMove.san ?? '',
+      }
+    } else {
+      lastMove.value = null
+    }
+
+    pendingPromotion.value = null
+    clearSelection()
+    isSetupComplete.value = true
+  }
+
+  function exportState() {
+    return {
+      fen: game.fen(),
+      turn: game.turn() as 'w' | 'b',
+      isGameOver: game.isGameOver(),
+      lastMove: lastMove.value ? { ...lastMove.value } : null,
+      statusMessage: statusMessage.value,
+    }
+  }
+
   refreshDerivedState()
 
   return {
@@ -368,5 +418,8 @@ export const useChessStore = defineStore('chess', () => {
     cancelSetup,
     applySetup,
     promotePawn,
+    setAllowedMoveColor,
+    loadFromState,
+    exportState,
   }
 })

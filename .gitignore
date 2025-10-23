@@ -28,3 +28,8 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# dotenv environment files
+.env
+.env.*
+!.env.example

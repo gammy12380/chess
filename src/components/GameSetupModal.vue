@@ -17,6 +17,7 @@ const props = defineProps<{
   initialMode: 'pvp' | 'pvai'
   initialDifficulty: 'easy' | 'medium' | 'hard'
   initialAiColor: 'w' | 'b'
+  allowedModes?: Array<'pvp' | 'pvai'>
   canCancel?: boolean
 }>()
 
@@ -35,6 +36,13 @@ const mode = ref<'pvp' | 'pvai'>(props.initialMode)
 const aiDifficulty = ref<'easy' | 'medium' | 'hard'>(props.initialDifficulty)
 const aiColor = ref<'w' | 'b'>(props.initialAiColor)
 
+const availableModeOptions = computed(() => {
+  if (!props.allowedModes || props.allowedModes.length === 0) {
+    return modeOptions
+  }
+  return modeOptions.filter((option) => props.allowedModes?.includes(option.value))
+})
+
 watch(
   () => props.open,
   (open) => {
@@ -42,8 +50,27 @@ watch(
       mode.value = props.initialMode
       aiDifficulty.value = props.initialDifficulty
       aiColor.value = props.initialAiColor
+
+      const firstAvailable = availableModeOptions.value[0]
+      if (
+        firstAvailable &&
+        !availableModeOptions.value.some((option) => option.value === mode.value)
+      ) {
+        mode.value = firstAvailable.value
+      }
     }
   },
+)
+
+watch(
+  availableModeOptions,
+  (options) => {
+    const firstAvailable = options[0]
+    if (firstAvailable && !options.some((option) => option.value === mode.value)) {
+      mode.value = firstAvailable.value
+    }
+  },
+  { immediate: true },
 )
 
 const isPvAi = computed(() => mode.value === 'pvai')
@@ -86,7 +113,7 @@ function handleCancel() {
               <h3 class="mb-2 text-xs uppercase tracking-[0.2em] text-slate-400">模式</h3>
               <div class="flex flex-wrap gap-2">
                 <button
-                  v-for="option in modeOptions"
+                  v-for="option in availableModeOptions"
                   :key="option.value"
                   type="button"
                   class="rounded-md border px-3 py-2 transition"
