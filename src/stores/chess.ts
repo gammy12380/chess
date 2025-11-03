@@ -63,7 +63,7 @@ export const useChessStore = defineStore('chess', () => {
     () =>
       new Set(
         legalMoves.value
-          .filter((move) => move.flags.includes('c') || move.flags.includes('e'))
+          .filter((move) => move.isCapture() || move.isEnPassant())
           .map((move) => move.to),
       ),
   )
@@ -158,7 +158,7 @@ export const useChessStore = defineStore('chess', () => {
       return
     }
 
-    const promotionMoves = movesToTarget.filter((move) => Boolean(move.promotion))
+    const promotionMoves = movesToTarget.filter((move) => move.isPromotion())
     if (promotionMoves.length > 0) {
       const piece = game.get(selectedSquare.value)
       pendingPromotion.value = {
