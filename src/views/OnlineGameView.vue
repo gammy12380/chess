@@ -67,6 +67,7 @@ const {
   history,
   turnColor,
   isSetupComplete,
+  mode,
 } = storeToRefs(chessStore)
 
 const { dismissResult, promotePawn, loadFromState, exportState, setAllowedMoveColor, reset } =
@@ -97,6 +98,7 @@ const suppressSync = ref(false)
 const hasForcedExit = ref(false)
 let realtimeChannel: RealtimeChannel | null = null
 const playerState = ref<'in_game' | 'waiting'>('waiting')
+// 卸載時不再主動呼叫離開/重置 RPC，以避免使用者只是重新整理就導致房間被解散
 
 const statusLabels: Record<RoomStatus, string> = {
   waiting: '等待中',
@@ -625,6 +627,8 @@ watch(
 onMounted(() => {
   isSetupComplete.value = false
   setAllowedMoveColor('both')
+  // 強制線上對戰使用「雙人對戰」模式，避免本地 AI 在此頁面被觸發
+  mode.value = 'pvp'
   void initialize()
 })
 
@@ -636,6 +640,8 @@ onBeforeUnmount(() => {
     realtimeChannel = null
   }
   isSetupComplete.value = false
+  // 清理卸載監聽器
+  // 不註冊 unload 處理器，因此無需移除
 })
 </script>
 
